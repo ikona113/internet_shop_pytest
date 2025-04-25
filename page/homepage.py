@@ -38,7 +38,7 @@ class HomePage:
         cart = self.driver.find_element(By.CSS_SELECTOR, 'div[class="swatch-opt-1556"] > div[class="swatch-attribute size"]')
         wait = WebDriverWait(self.driver,5)
         value = cart.get_attribute('option-selected')
-        print(value)
+
         assert int(value) == 166
 
     def click_color_Blue(self):
@@ -51,5 +51,5 @@ class HomePage:
         cart = self.driver.find_element(By.CSS_SELECTOR, 'div[class="swatch-opt-1556"] > div[class="swatch-attribute color"]')
         wait = WebDriverWait(self.driver,5)
         value = cart.get_attribute('option-selected')
-        print(value)
+
         assert int(value) == 50

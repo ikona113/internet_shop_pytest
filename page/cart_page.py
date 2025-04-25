@@ -10,6 +10,14 @@ class CartPage:
     def __init__(self, driver):
         self.driver = driver
 
+    def click_size_m(self):
+        button = self.driver.find_element(By.CSS_SELECTOR, 'div[option-label="M"]')
+        button.click()
+
+    def click_color_gray(self):
+        button = self.driver.find_element(By.CSS_SELECTOR, 'div[option-label="Gray"]')
+        button.click()
+
     def click_add_to_cart(self):
         """Нажать кнопку -> Add to Cart"""
         element = self.driver.find_element(By.CSS_SELECTOR, "button[title='Add to Cart']")
