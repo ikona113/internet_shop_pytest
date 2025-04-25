@@ -1,8 +1,9 @@
 from page.homepage import HomePage
-import pytest
+from conftest import driver
 
 
-def asd(driver):
-    HomePage.open1(driver)
-    HomePage.accept_agree()
-    HomePage.click_argus()
+
+def test_asd(driver):
+    homepage=HomePage(driver)
+    homepage.accept_agree()
+    homepage.click_argus()

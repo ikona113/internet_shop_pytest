@@ -1,6 +1,8 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ES
+from selenium.webdriver.support import expected_conditions as EC
 
 class HomePage:
 
@@ -21,3 +23,15 @@ class HomePage:
     def click_radiant_tee(self):
         element = self.driver.find_element(By.CSS_SELECTOR, 'span img[src="https://magento.softwaretestingboard.com/pub/media/catalog/product/cache/7c4c1ed835fbbf2269f24539582c6d44/w/s/ws12-orange_main_2.jpg"]')
         element.click()
+
+    def click_size_xs(self):
+        element = self.driver.find_element(By.CSS_SELECTOR, 'div[aria-label="Size"] > div[option-tooltip-value="XS"]')
+        element.click()
+
+    def display_xs_selected(self):
+        cart = self.driver.find_element(By.CSS_SELECTOR, 'div[class="swatch-opt-1556"] > div[class="swatch-attribute size"]')
+        wait = WebDriverWait(self.driver,5)
+        value = cart.get_attribute('option-selected')
+        print(value)
+        assert int(value) == 166
+
