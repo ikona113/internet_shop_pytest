@@ -7,6 +7,7 @@ from conftest import driver
 
 
 def test_cart(driver):
+    """Проверяем, что при добавлении 1 товара в корзину, у корзины отображается иконка с цифрой 1"""
     homepage=HomePage(driver)
     cartpage=CartPage(driver)
     homepage.open()
