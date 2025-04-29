@@ -53,3 +53,16 @@ class HomePage:
         value = cart.get_attribute('option-selected')
 
         assert int(value) == 50
+
+    def click_promo_picture(self):
+        """Клик по промо картинке ведущей в коллекцию"""
+        button = self.driver.find_element(By.CSS_SELECTOR, 'img[src="https://magento.softwaretestingboard.com/pub/media/wysiwyg/home/home-main.jpg"]')
+        button.click()
+
+    def display_new_url_for_expected_url(self, expected_url):
+
+        # Ожидаем определенный URL
+        # WebDriverWait(self.driver, 10).until(EC.url_to_be(expected_url))
+
+        # Или проверяем, что URL содержит expected_url
+        assert expected_url in self.driver.current_url

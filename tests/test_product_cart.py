@@ -11,7 +11,10 @@ def test_cart(driver):
     homepage=HomePage(driver)
     cartpage=CartPage(driver)
     homepage.open()
-    homepage.accept_agree()
+    try:
+        homepage.accept_agree()
+    except Exception:
+        print('Не появилось окно с куки')
     homepage.click_argus()
     cartpage.click_size_m()
     cartpage.click_color_gray()
