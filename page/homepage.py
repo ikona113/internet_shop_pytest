@@ -79,3 +79,7 @@ class HomePage:
         create_an_account_link = self.driver.find_element(By.XPATH, '//a[contains(@href, "/customer/account/create") and normalize-space(text())="Create an Account"]')
         create_an_account_link.click()
 
+    def display_welcome(self):
+        element = self.driver.find_element(By.XPATH, '//span[@class="logged-in"]')
+        text = element.text
+        assert 'Welcome' in text

@@ -1,3 +1,4 @@
+
 import time
 
 from conftest import driver
@@ -56,15 +57,31 @@ def test_registration_from_homepage(driver):
     accountpage = AccountPage(driver)
 
 
-    first_name = 'Artem1'
-    last_name = 'Ikonnikov1'
-    email = 'asssdd1@mail.ru'
-    password = 'Aassdd113.'
-    confirm_password = 'Aassdd113.'
+    first_name = 'Artem11'
+    last_name = 'Ikonnikov11'
+    email = 'asssdd11@mail.ru'
+    password = 'Aassdd1113.'
+    confirm_password = 'Aassdd1113.'
     accountpage.input_first_name(first_name)
     accountpage.input_last_name(last_name)
     accountpage.input_email(email)
     accountpage.input_password(password)
     accountpage.input_confirm_password(confirm_password)
     accountpage.click_create_an_account()
-    accountpage.display_new_url_for_registration()
+    accountpage.display_url_for_profile()
+
+def test_authorization_from_homepage(driver):
+    """Тест на прохождение авторизации с главной страницы"""
+    homepage = HomePage(driver)
+    homepage.open()
+    homepage.accept_agree()
+    homepage.click_sign_in()
+    accountpage = AccountPage(driver)
+
+    email = 'asssdd1@mail.ru'
+    password = 'Aassdd113.'
+    accountpage.input_email(email)
+    accountpage.input_password(password)
+    accountpage.click_sign_in_account()
+    homepage.display_welcome()
+

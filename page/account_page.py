@@ -49,7 +49,15 @@ class AccountPage:
         )
         find_button.click()
 
-    def display_new_url_for_registration(self):
+    def display_url_for_profile(self):
         """Проверим что открылся профиль"""
         expected_url = 'https://magento.softwaretestingboard.com/customer/account/'
         assert WebDriverWait(self.driver, 10).until(EC.url_to_be(expected_url))
+
+    def click_sign_in_account(self):
+        """Нажать кнопку Sign In"""
+        find_button = WebDriverWait(self.driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, '//button[@class="action login primary"]'))
+        )
+        find_button.click()
+
