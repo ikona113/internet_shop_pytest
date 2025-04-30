@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.action_chains import ActionChains
 class HomePage:
 
     def __init__(self, driver):
@@ -15,8 +15,11 @@ class HomePage:
 
     def accept_agree(self):
         """Принимает предложение с куки"""
-        button = self.driver.find_element(By.CSS_SELECTOR, "button[class=' css-1n36tvh']")
-        button.click()
+        try:
+            button = self.driver.find_element(By.CSS_SELECTOR, "button[class=' css-1n36tvh']")
+            button.click()
+        except Exception:
+            return
 
     def click_argus(self):
         """Переходим в карточку Argus All-Weather Tank"""
@@ -41,7 +44,7 @@ class HomePage:
 
         assert int(value) == 166
 
-    def click_color_Blue(self):
+    def click_color_blue(self):
         """Кликаем по кнопке Blue на первой карточке товара home page"""
         button = self.driver.find_element(By.CSS_SELECTOR, 'div[class="swatch-opt-1556"] > div[class="swatch-attribute color"]  div[option-label="Blue"]')
         button.click()
@@ -60,7 +63,7 @@ class HomePage:
         picture_link.click()
 
     def display_new_url_for_expected_url(self, expected_url):
-
+        """Проверка, что url содержит expected_url"""
         # Ожидаем определенный URL
         # WebDriverWait(self.driver, 10).until(EC.url_to_be(expected_url))
 
@@ -80,6 +83,26 @@ class HomePage:
         create_an_account_link.click()
 
     def display_welcome(self):
+        """Отображение "Welcome, firstname" после авторизации"""
         element = self.driver.find_element(By.XPATH, '//span[@class="logged-in"]')
         text = element.text
         assert 'Welcome' in text
+
+    def output_list_women(self):
+
+        element = self.driver.find_element(By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/women.html"]')
+
+    def display_output_list_women(self):
+        """Проверка, что выпадающий список появляется"""
+        element = self.driver.find_element(By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/women.html"]')
+        # Создаем объект ActionChains для работы с действиями мыши
+        actions = ActionChains(self.driver)
+
+        # Наводим курсор на кнопку
+        actions.move_to_element(element).perform()
+
+        wait = WebDriverWait(self.driver, 5)
+        dropdown_menu = wait.until(
+            EC.visibility_of_element_located((By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/women.html" and @class="level-top ui-corner-all ui-state-focus"]'))
+        )
+        assert dropdown_menu.is_displayed(), "Выпадающий список не появился"

@@ -18,7 +18,7 @@ def test_select_blue_color(driver):
     homepage = HomePage(driver)
     homepage.open()
     homepage.accept_agree()
-    homepage.click_color_Blue()
+    homepage.click_color_blue()
     homepage.display_blue_color_selected()
 
 def test_promo_picture_proceed_to_collection(driver):
@@ -85,3 +85,9 @@ def test_authorization_from_homepage(driver):
     accountpage.click_sign_in_account()
     homepage.display_welcome()
 
+def test_dropdown_menu_woman(driver):
+    """Тест на выпадающий список Woman"""
+    homepage = HomePage(driver)
+    homepage.open()
+    homepage.accept_agree()
+    homepage.display_output_list_women()
